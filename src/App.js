@@ -40,47 +40,80 @@ const CitySearchForm = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-8 bg-white shadow-xl rounded-lg border border-gray-200 mt-10">
-      <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">Search for a City</h1>
+    <div
+      style={{
+        maxWidth: "90%", // Limit width for larger screens
+        width: "100%", // Take full width on smaller screens
+        padding: "20px", // Add padding for spacing
+        margin: "20px auto", // Center horizontally with auto margin
+        backgroundColor: "white", // Ensure a clean background
+        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Add shadow for depth
+        borderRadius: "8px", // Rounded corners
+        border: "1px solid #ccc", // Light border
+      }}
+    >
+      <h1
+        style={{
+          fontSize: "2rem", // Responsive font size
+          textAlign: "center",
+          marginBottom: "20px",
+          color: "#333",
+        }}
+      >
+        Search for a City
+      </h1>
 
       {apiError && (
-        <p className="text-red-500 text-center mb-4">{apiError}</p>
+        <p style={{ color: "red", textAlign: "center", marginBottom: "10px" }}>
+          {apiError}
+        </p>
       )}
 
-<div className="relative w-full mb-6">
-  <input
-    style={{
-      width: "400px",
-      height: "40px", // Adjusted to make it look better
-      padding: "0 12px", // Added padding for better text spacing
-      borderRadius: "8px", // Added rounded corners
-      border: "1px solid #ccc", // Subtle border color
-      fontSize: "14px", // Adjusted font size for readability
-      outline: "none", // Removes default outline
-      boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)", // Light shadow for depth
-      zIndex: "1",
-    }}
-    type="text"
-    value={value}
-    onChange={handleInputChange}
-    placeholder="Search for a city..."
-  />
-</div>
-
-
-
-
+      <div style={{ position: "relative", marginBottom: "20px" }}>
+        <input
+          style={{
+            width: "100%", // Full width for responsiveness
+            height: "40px",
+            padding: "0 12px",
+            borderRadius: "8px",
+            border: "1px solid #ccc",
+            fontSize: "14px",
+            outline: "none",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+          }}
+          type="text"
+          value={value}
+          onChange={handleInputChange}
+          placeholder="Search for a city..."
+        />
+      </div>
 
       {status === "OK" && (
-        <ul style={{
-          marginTop:"20px"
-         }}
-         className="border rounded-md mt-4 max-h-60 overflow-y-auto bg-white shadow-lg rounded-lg">
+        <ul
+          style={{
+            marginTop: "10px",
+            border: "1px solid #ccc",
+            borderRadius: "8px",
+            maxHeight: "200px", // Limit height
+            overflowY: "auto", // Enable scrolling
+            backgroundColor: "white",
+            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            padding: "0",
+            listStyleType: "none",
+          }}
+        >
           {data.map(({ place_id, description }) => (
             <li
               key={place_id}
-              className="p-4 cursor-pointer hover:bg-blue-100 hover:text-blue-800 transition duration-200"
+              style={{
+                padding: "10px",
+                cursor: "pointer",
+                borderBottom: "1px solid #f0f0f0", // Light separator
+                transition: "background-color 0.3s, color 0.3s",
+              }}
               onClick={() => handleSelect(description)}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#f0f8ff")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "white")}
             >
               {description}
             </li>
@@ -88,14 +121,17 @@ const CitySearchForm = () => {
         </ul>
       )}
 
-      <div className="mt-10"
-      style={{
-       marginTop:"20px"
-      }}
+      <div
+        style={{
+          marginTop: "20px",
+          textAlign: "center", // Center align
+          fontSize: "1rem",
+          color: "#555",
+        }}
       >
-        <p className="font-medium text-gray-700">Selected City: {selectedCity || "None"}</p>
+        <p>Selected City: {selectedCity || "None"}</p>
         {coordinates && (
-          <p className="mt-7 text-gray-700">
+          <p style={{ marginTop: "10px" }}>
             Coordinates: {coordinates.lat}, {coordinates.lng}
           </p>
         )}
@@ -120,13 +156,15 @@ const App = () => {
       }}
     >
       {apiKeyError ? (
-        <div className="text-center text-red-500 p-4">
+        <div style={{ textAlign: "center", color: "red", padding: "20px" }}>
           {apiKeyError}
         </div>
       ) : isApiReady ? (
         <CitySearchForm />
       ) : (
-        <p className="text-center text-gray-500">Loading Google Maps API...</p>
+        <p style={{ textAlign: "center", color: "#555" }}>
+          Loading Google Maps API...
+        </p>
       )}
     </LoadScript>
   );
