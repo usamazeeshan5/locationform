@@ -1,0 +1,132 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  color: #2c3e50;
+}
+
+/* CitySearchForm */
+.city-search-form {
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.city-search-form:hover {
+  transform: translateY(-5px);
+}
+
+.city-search-form h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 15px 20px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  background-color: #f9fafb;
+  outline: none;
+  transition: border 0.3s ease-in-out;
+}
+
+.input-wrapper input:focus {
+  border-color: #3498db;
+}
+
+.input-wrapper input::placeholder {
+  color: #bdc3c7;
+}
+
+.suggestions-list {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 8px;
+}
+
+.suggestions-list li {
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.suggestions-list li:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+/* Selected City and Coordinates */
+.selected-city {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  color: #2c3e50;
+}
+
+.coordinates {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+.api-error {
+  color: #e74c3c;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+.loading-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #95a5a6;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .city-search-form {
+    padding: 30px 20px;
+  }
+
+  .input-wrapper input {
+    font-size: 0.9rem;
+    padding: 12px 15px;
+  }
+}
