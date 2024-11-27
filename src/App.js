@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { LoadScript } from "@react-google-maps/api";
+import { FaMapMarkerAlt, FaTimes } from "react-icons/fa"; // Import location and close icons
 import "./App.css";
+
 const googleLibraries = ["places"];
 
 const CitySearchForm = () => {
@@ -39,30 +41,15 @@ const CitySearchForm = () => {
     }
   };
 
-  return (
-    <div
-      style={{
-        maxWidth: "90%", // Limit width for larger screens
-        width: "100%", // Take full width on smaller screens
-        padding: "20px", // Add padding for spacing
-        margin: "20px auto", // Center horizontally with auto margin
-        backgroundColor: "white", // Ensure a clean background
-        boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Add shadow for depth
-        borderRadius: "8px", // Rounded corners
-        border: "1px solid #ccc", // Light border
-      }}
-    >
-      <h1
-        style={{
-          fontSize: "2rem", // Responsive font size
-          textAlign: "center",
-          marginBottom: "20px",
-          color: "#333",
-        }}
-      >
-        Search for a City
-      </h1>
+  // Clear input value when clicking on the "X" icon
+  const handleClearInput = () => {
+    setValue("");
+    setSelectedCity("");
+    clearSuggestions();
+  };
 
+  return (
+    <div>
       {apiError && (
         <p style={{ color: "red", textAlign: "center", marginBottom: "10px" }}>
           {apiError}
@@ -70,22 +57,53 @@ const CitySearchForm = () => {
       )}
 
       <div style={{ position: "relative", marginBottom: "20px" }}>
-        <input
-          style={{
-            width: "100%", // Full width for responsiveness
-            height: "40px",
-            padding: "0 12px",
-            borderRadius: "8px",
-            border: "1px solid #ccc",
-            fontSize: "14px",
-            outline: "none",
-            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-          }}
-          type="text"
-          value={value}
-          onChange={handleInputChange}
-          placeholder="Search for a city..."
-        />
+        <div style={{ position: "relative", width: "100%" }}>
+          {/* Input field */}
+          <input
+            style={{
+              width: "100%",
+              height: "40px",
+              paddingLeft: "40px", // Left padding for icon
+              paddingRight: "40px", // Right padding for clear icon
+              borderRadius: "12px",
+              border: "1px solid #ccc",
+              fontSize: "14px",
+              outline: "none",
+              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+            }}
+            type="text"
+            value={value}
+            onChange={handleInputChange}
+            placeholder="Where to?"
+          />
+          {/* Location Icon inside the input field */}
+          <FaMapMarkerAlt
+            style={{
+              position: "absolute",
+              left: "12px", // Adjust icon position
+              top: "50%",
+              transform: "translateY(-50%)",
+              color: "#888",
+              fontSize: "20px",
+              pointerEvents: "none", // Prevent icon from blocking input
+            }}
+          />
+          {/* Clear (X) Icon inside the input field */}
+          {value && (
+            <FaTimes
+              style={{
+                position: "absolute",
+                right: "12px", // Adjust position
+                top: "50%",
+                transform: "translateY(-50%)",
+                color: "#888",
+                fontSize: "18px",
+                cursor: "pointer",
+              }}
+              onClick={handleClearInput}
+            />
+          )}
+        </div>
       </div>
 
       {status === "OK" && (
@@ -94,8 +112,8 @@ const CitySearchForm = () => {
             marginTop: "10px",
             border: "1px solid #ccc",
             borderRadius: "8px",
-            maxHeight: "200px", // Limit height
-            overflowY: "auto", // Enable scrolling
+            maxHeight: "200px",
+            overflowY: "auto",
             backgroundColor: "white",
             boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
             padding: "0",
@@ -108,7 +126,7 @@ const CitySearchForm = () => {
               style={{
                 padding: "10px",
                 cursor: "pointer",
-                borderBottom: "1px solid #f0f0f0", // Light separator
+                borderBottom: "1px solid #f0f0f0",
                 transition: "background-color 0.3s, color 0.3s",
               }}
               onClick={() => handleSelect(description)}
@@ -120,22 +138,6 @@ const CitySearchForm = () => {
           ))}
         </ul>
       )}
-
-      <div
-        style={{
-          marginTop: "20px",
-          textAlign: "center", // Center align
-          fontSize: "1rem",
-          color: "#555",
-        }}
-      >
-        <p>Selected City: {selectedCity || "None"}</p>
-        {coordinates && (
-          <p style={{ marginTop: "10px" }}>
-            Coordinates: {coordinates.lat}, {coordinates.lng}
-          </p>
-        )}
-      </div>
     </div>
   );
 };
