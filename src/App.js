@@ -30,17 +30,19 @@ const CitySearchForm = () => {
     setValue(description, false);
     clearSuggestions();
     setSelectedCity(description);
-
+  
     try {
       const geocode = await getGeocode({ address: description });
       const { lat, lng } = getLatLng(geocode[0]);
       setCoordinates({ lat, lng });
+      // Redirect to external URL
+      window.location.href = "http://fuelmemories.com/yachts/";
     } catch (error) {
       console.error("Error fetching coordinates:", error);
       setApiError("Failed to fetch coordinates. Please try again.");
     }
   };
-
+  
   // Clear input value when clicking on the "X" icon
   const handleClearInput = () => {
     setValue("");
