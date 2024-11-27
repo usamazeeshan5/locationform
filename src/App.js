@@ -64,7 +64,7 @@ const CitySearchForm = () => {
           <input
             style={{
               width: "100%",
-              height: "40px",
+              height: "50px",
               paddingLeft: "40px",
               paddingRight: "40px",
               borderRadius: "12px",
