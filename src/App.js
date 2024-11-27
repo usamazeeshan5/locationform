@@ -36,7 +36,7 @@ const CitySearchForm = () => {
       const { lat, lng } = getLatLng(geocode[0]);
       setCoordinates({ lat, lng });
       // Redirect to external URL
-      window.location.href = "http://fuelmemories.com/yachts/";
+      window.location.href = "https://fuelmemories.com/yachts/";
     } catch (error) {
       console.error("Error fetching coordinates:", error);
       setApiError("Failed to fetch coordinates. Please try again.");
