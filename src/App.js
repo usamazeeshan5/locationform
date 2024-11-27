@@ -30,24 +30,25 @@ const CitySearchForm = () => {
     setValue(description, false);
     clearSuggestions();
     setSelectedCity(description);
-  
+
     try {
       const geocode = await getGeocode({ address: description });
       const { lat, lng } = getLatLng(geocode[0]);
       setCoordinates({ lat, lng });
-      // Redirect to external URL in a new tab
-      window.open("https://fuelmemories.com/yachts/", "_blank");
     } catch (error) {
       console.error("Error fetching coordinates:", error);
       setApiError("Failed to fetch coordinates. Please try again.");
     }
   };
-  
-  // Clear input value when clicking on the "X" icon
+
   const handleClearInput = () => {
     setValue("");
     setSelectedCity("");
     clearSuggestions();
+  };
+
+  const handleSubmit = () => {
+    window.open("https://fuelmemories.com/yachts/", "_blank");
   };
 
   return (
@@ -58,15 +59,14 @@ const CitySearchForm = () => {
         </p>
       )}
 
-      <div style={{ position: "relative", marginBottom: "20px" }}>
+      <div style={{ position: "relative", marginBottom: "20px", display: "flex", gap: "10px" }}>
         <div style={{ position: "relative", width: "100%" }}>
-          {/* Input field */}
           <input
             style={{
               width: "100%",
               height: "40px",
-              paddingLeft: "40px", // Left padding for icon
-              paddingRight: "40px", // Right padding for clear icon
+              paddingLeft: "40px",
+              paddingRight: "40px",
               borderRadius: "12px",
               border: "1px solid #ccc",
               fontSize: "14px",
@@ -78,24 +78,22 @@ const CitySearchForm = () => {
             onChange={handleInputChange}
             placeholder="Where to?"
           />
-          {/* Location Icon inside the input field */}
           <FaMapMarkerAlt
             style={{
               position: "absolute",
-              left: "12px", // Adjust icon position
+              left: "12px",
               top: "50%",
               transform: "translateY(-50%)",
               color: "#888",
               fontSize: "20px",
-              pointerEvents: "none", // Prevent icon from blocking input
+              pointerEvents: "none",
             }}
           />
-          {/* Clear (X) Icon inside the input field */}
           {value && (
             <FaTimes
               style={{
                 position: "absolute",
-                right: "12px", // Adjust position
+                right: "12px",
                 top: "50%",
                 transform: "translateY(-50%)",
                 color: "#888",
@@ -106,6 +104,21 @@ const CitySearchForm = () => {
             />
           )}
         </div>
+
+        <button
+          onClick={handleSubmit}
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#007bff",
+            color: "#fff",
+            borderRadius: "8px",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "16px",
+          }}
+        >
+          Submit
+        </button>
       </div>
 
       {status === "OK" && (
@@ -143,6 +156,7 @@ const CitySearchForm = () => {
     </div>
   );
 };
+
 
 const App = () => {
   const [isApiReady, setIsApiReady] = useState(false);
