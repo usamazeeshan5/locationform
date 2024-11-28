@@ -124,6 +124,8 @@ body {
   .submit-btn {
     font-size: 15px; /* Smaller font size for smaller screens */
     padding: 6px 12px; /* Compact button padding */
+    height: 45px;
+
   }
 
   .input-container input {
@@ -140,6 +142,8 @@ body {
   .submit-btn {
     font-size: 15px;
     padding: 5px 10px; 
+    height: 40px;
+
   }
 
   .input-container input {
