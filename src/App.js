@@ -49,9 +49,11 @@ const CitySearchForm = () => {
 
   const handleSubmit = () => {
     if (selectedCity) {
+      const citySlug = selectedCity.toLowerCase().replace(/\s+/g, "-");
+      const url = `https://fuelmemories.com/${citySlug}/`;
       console.log("Selected Location:", selectedCity);
       console.log("Coordinates:", coordinates);
-      window.open("https://fuelmemories.com/yacht-2/", "_blank");
+        window.open(url, "_blank");
 
     } else {
       console.log("No location selected.");
