@@ -61,6 +61,7 @@ body {
   transform: translateY(-50%);
   font-size: 20px;
   color: #888;
+  cursor: pointer;
 }
 
 .icon.left {
@@ -69,9 +70,20 @@ body {
 
 .icon.right {
   right: 12px;
-  cursor: pointer;
+  color: #888;
 }
 
+.icon.clear {
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Hover effect for the clear icon */
+.icon.clear:hover {
+  color: #007bff;
+}
 /* Submit Button */
 .submit-btn {
   flex-shrink: 0; /* Prevent button from shrinking */
@@ -121,6 +133,9 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .container{
+    margin-left: 10px;
+  }
   .submit-btn {
     font-size: 15px; /* Smaller font size for smaller screens */
     padding: 6px 12px; /* Compact button padding */
@@ -137,6 +152,7 @@ body {
 @media (max-width: 480px) {
   .container {
     width: 95%;
+    margin-left: 10px;
   }
 
   .submit-btn {
@@ -147,7 +163,7 @@ body {
   }
 
   .input-container input {
-    font-size: 12px;
+    font-size: 15px;
     height: 40px;
   }
 }
