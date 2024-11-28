@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { LoadScript } from "@react-google-maps/api";
-import { FaMapMarkerAlt, FaTimes } from "react-icons/fa"; // Import location and close icons
+import { FaMapMarkerAlt, FaTimes } from "react-icons/fa";
 import "./App.css";
 
 const googleLibraries = ["places"];
@@ -52,111 +52,36 @@ const CitySearchForm = () => {
   };
 
   return (
-    <div>
-      {apiError && (
-        <p style={{ color: "red", textAlign: "center", marginBottom: "10px" }}>
-          {apiError}
-        </p>
-      )}
+    <div className="container">
+    {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
 
-      <div style={{ position: "relative", marginBottom: "20px", display: "flex", gap: "10px" }}>
-        <div style={{ position: "relative", width: "100%" }}>
-          <input
-            style={{
-              width: "100%",
-              height: "50px",
-              paddingLeft: "40px",
-              paddingRight: "40px",
-              borderRadius: "12px",
-              border: "1px solid #ccc",
-              fontSize: "14px",
-              outline: "none",
-              boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-            }}
-            type="text"
-            value={value}
-            onChange={handleInputChange}
-            placeholder="Where to?"
-          />
-          <FaMapMarkerAlt
-            style={{
-              position: "absolute",
-              left: "12px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "#888",
-              fontSize: "20px",
-              pointerEvents: "none",
-            }}
-          />
-          {value && (
-            <FaTimes
-              style={{
-                position: "absolute",
-                right: "12px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                color: "#888",
-                fontSize: "18px",
-                cursor: "pointer",
-              }}
-              onClick={handleClearInput}
-            />
-          )}
-        </div>
-
-        <button
-          onClick={handleSubmit}
-          style={{
-            padding: "10px 20px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            borderRadius: "8px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "16px",
-          }}
-        >
-          Submit
-        </button>
-      </div>
-
-      {status === "OK" && (
-        <ul
-          style={{
-            marginTop: "10px",
-            border: "1px solid #ccc",
-            borderRadius: "8px",
-            maxHeight: "200px",
-            overflowY: "auto",
-            backgroundColor: "white",
-            boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
-            padding: "0",
-            listStyleType: "none",
-          }}
-        >
-          {data.map(({ place_id, description }) => (
-            <li
-              key={place_id}
-              style={{
-                padding: "10px",
-                cursor: "pointer",
-                borderBottom: "1px solid #f0f0f0",
-                transition: "background-color 0.3s, color 0.3s",
-              }}
-              onClick={() => handleSelect(description)}
-              onMouseOver={(e) => (e.target.style.backgroundColor = "#f0f8ff")}
-              onMouseOut={(e) => (e.target.style.backgroundColor = "white")}
-            >
-              {description}
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="input-container">
+      <input
+        type="text"
+        value={value}
+        onChange={handleInputChange}
+        placeholder="Where to?"
+      />
+      <FaMapMarkerAlt className="icon left" />
+      {value && <FaTimes className="icon right" onClick={handleClearInput} />}
     </div>
+
+    <button className="submit-btn" onClick={handleSubmit}>
+      Submit
+    </button>
+
+    {status === "OK" && (
+      <ul className="suggestions">
+        {data.map(({ place_id, description }) => (
+          <li key={place_id} onClick={() => handleSelect(description)}>
+            {description}
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
   );
 };
-
 
 const App = () => {
   const [isApiReady, setIsApiReady] = useState(false);
