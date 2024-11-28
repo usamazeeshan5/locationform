@@ -18,6 +18,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  justify-content: center; /* Center contents vertically */
 }
 
 /* Input Field Container */
@@ -70,10 +71,9 @@ body {
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 20px; /* Smaller font size */
+  font-size: 20px; /* Default font size */
   cursor: pointer;
   transition: background-color 0.3s ease;
-  align-self: center; /* Ensures button stays centered */
 }
 
 .submit-btn:hover {
