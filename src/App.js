@@ -48,8 +48,16 @@ const CitySearchForm = () => {
   };
 
   const handleSubmit = () => {
-    window.open("https://fuelmemories.com/yachts/", "_blank");
+    if (selectedCity) {
+      console.log("Selected Location:", selectedCity);
+      console.log("Coordinates:", coordinates);
+      window.open("https://fuelmemories.com/yacht-2/", "_blank");
+
+    } else {
+      console.log("No location selected.");
+    }
   };
+  
 
   return (
     <div className="container">
