@@ -124,7 +124,7 @@ body {
 
   .submit-btn {
     font-size: 15px;
-    padding: 5px 10px; /* Smaller padding for very small screens */
+    padding: 5px 10px; 
   }
 
   .input-container input {
