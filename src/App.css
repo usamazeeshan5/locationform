@@ -18,13 +18,22 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  justify-content: center; /* Center contents vertically */
+  justify-content: center;
 }
 
 /* Input Field Container */
+.input-container-wrapper {
+  display: flex; /* Keep input and button inline */
+  gap: 10px; /* Space between input and button */
+  width: 100%; /* Full width */
+  justify-content: space-between;
+  align-items: center;
+}
+
 .input-container {
   position: relative;
-  width: 100%;
+  width: 100%; /* Allow the input to take the remaining space */
+  flex: 1;
 }
 
 .input-container input {
@@ -65,15 +74,21 @@ body {
 
 /* Submit Button */
 .submit-btn {
-  width: auto;
-  padding: 8px 16px; /* Small button size */
+  flex-shrink: 0; /* Prevent button from shrinking */
+  height: 50px; /* Match the input height */
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 20px; /* Default font size */
+  border-radius: 12px;
+  padding: 0 20px;
+  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: flex;
+  
+  margin-left: 80px;
+  align-items: center;
+  justify-content: center;
 }
 
 .submit-btn:hover {

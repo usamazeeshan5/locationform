@@ -54,22 +54,24 @@ const CitySearchForm = () => {
   return (
     <div className="container">
     {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
-
-    <div className="input-container">
-      <input
-        type="text"
-        value={value}
-        onChange={handleInputChange}
-        placeholder="Where to?"
-      />
-      <FaMapMarkerAlt className="icon left" />
-      {value && <FaTimes className="icon right" onClick={handleClearInput} />}
+  
+    <div className="input-container-wrapper">
+      <div className="input-container">
+        <input
+          type="text"
+          value={value}
+          onChange={handleInputChange}
+          placeholder="Where to?"
+        />
+        <FaMapMarkerAlt className="icon left" />
+        {value && <FaTimes className="icon right" onClick={handleClearInput} />}
+      </div>
+  
+      <button className="submit-btn" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
-
-    <button className="submit-btn" onClick={handleSubmit}>
-      Submit
-    </button>
-
+  
     {status === "OK" && (
       <ul className="suggestions">
         {data.map(({ place_id, description }) => (
@@ -80,6 +82,7 @@ const CitySearchForm = () => {
       </ul>
     )}
   </div>
+  
   );
 };
 
