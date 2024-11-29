@@ -70,7 +70,7 @@ body {
 }
 
 .icon.right {
-  right: 12px;
+  right: -60px;
   
   color: #888;
 }
@@ -153,7 +153,7 @@ body {
 
 @media (max-width: 480px) {
   .container {
-    width: 95%;
+    width: 90%;
     margin-left: 10px;
   }
 
