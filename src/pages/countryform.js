@@ -55,12 +55,12 @@ const CitySearchForm = () => {
       const locationData = { city: selectedCity, coordinates };
       localStorage.setItem("selectedLocation", JSON.stringify(locationData));
   
-      // Encode the city name for safe URL usage
       const encodedCityName = encodeURIComponent(selectedCity);
   
-      // Navigate to the next page with the selected city in the URL
       window.location.href = `https://fuelmemories.com/yacht-2/?${encodedCityName}`;
-    } else {
+      
+    } else 
+    {
       console.log("No location selected.");
     }
   };
