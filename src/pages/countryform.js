@@ -55,12 +55,16 @@ const CitySearchForm = () => {
       const locationData = { city: selectedCity, coordinates };
       localStorage.setItem("selectedLocation", JSON.stringify(locationData));
   
-      // Navigate to the next page
-      window.location.href = "/location"; // Adjust route as needed
+      // Encode the city name for safe URL usage
+      const encodedCityName = encodeURIComponent(selectedCity);
+  
+      // Navigate to the next page with the selected city in the URL
+      window.location.href = `https://fuelmemories.com/yacht-2/?${encodedCityName}`;
     } else {
       console.log("No location selected.");
     }
   };
+  
   
 //   const handleSubmit = () => {
 //     if (selectedCity) {
