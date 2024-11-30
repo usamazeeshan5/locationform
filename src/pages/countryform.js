@@ -55,15 +55,23 @@ const CitySearchForm = () => {
       const locationData = { city: selectedCity, coordinates };
       localStorage.setItem("selectedLocation", JSON.stringify(locationData));
   
-      const encodedCityName = encodeURIComponent(selectedCity);
+      // Encode the location, then replace encoded characters with readable ones
+      const encodedLocation = encodeURIComponent(selectedCity)
+        .replace(/%20/, " ") // Replace %20 with space
+        .replace(/%20/g, " ") // Replace %20 with space
+        .replace(/%2C/g, ",") // Replace %2C with comma
+        .replace(/%26/g, "&") // Replace %26 with ampersand if needed
+        .replace(/%27/g, "'"); // Replace %27 with apostrophe if needed
   
-      window.location.href = `https://fuelmemories.com/yacht-2/?${encodedCityName}`;
-      
-    } else 
-    {
+      // Navigate to the next page with the cleaned location in the URL
+      window.location.href = `https://fuelmemories.com/yacht-2/?location=${encodedLocation}`;
+    } else {
       console.log("No location selected.");
     }
   };
+  
+  
+  
   
   
 //   const handleSubmit = () => {
