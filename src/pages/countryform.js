@@ -64,7 +64,7 @@ const CitySearchForm = () => {
         .replace(/%27/g, "'"); // Replace %27 with apostrophe if needed
   
       // Navigate to the next page with the cleaned location in the URL
-    window.open(`https://fuelmemories.com/yachts-worldwide/?location=${encodedLocation}`, "_blank");
+    window.open(`https://fuelmemories.com/yacht-2/?location=${encodedLocation}`, "_blank");
       
     } else {
       console.log("No location selected.");
