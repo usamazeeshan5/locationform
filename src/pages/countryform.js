@@ -57,11 +57,11 @@ const CitySearchForm = () => {
   
       // Encode the location, then replace encoded characters with readable ones
       const encodedLocation = encodeURIComponent(selectedCity)
-        .replace(/%20/, " ") // Replace %20 with space
-        .replace(/%20/g, " ") // Replace %20 with space
-        .replace(/%2C/g, ",") // Replace %2C with comma
-        .replace(/%26/g, "&") // Replace %26 with ampersand if needed
-        .replace(/%27/g, "'"); // Replace %27 with apostrophe if needed
+        .replace(/%20/, " ") 
+        .replace(/%20/g, " ") 
+        .replace(/%2C/g, ",") 
+        .replace(/%26/g, "&") 
+        .replace(/%27/g, "'"); 
   
       // Navigate to the next page with the cleaned location in the URL
     window.open(`https://fuelmemories.com/yachts-worldwide/?location=${encodedLocation}`, "_blank");
@@ -89,35 +89,52 @@ const CitySearchForm = () => {
 
   return (
     <div className="container">
-    {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
-  
-    <div className="input-container-wrapper">
-      <div className="input-container">
-        <input
-          type="text"
-          value={value}
-          onChange={handleInputChange}
-          placeholder="Where to?"
-        />
-        <FaMapMarkerAlt className="icon left" />
-        {value && <FaTimes className="icon right" onClick={handleClearInput} />}
-      </div>
-  
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
-      </button>
+  {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
+
+  <div className="input-category-container">
+    <div className="input-container">
+      <input
+        type="text"
+        value={value}
+        onChange={handleInputChange}
+        placeholder="Where to?"
+      />
+      <FaMapMarkerAlt className="icon left" />
+      {value && <FaTimes className="icon right" onClick={handleClearInput} />}
     </div>
-  
-    {status === "OK" && (
-      <ul className="suggestions">
-        {data.map(({ place_id, description }) => (
-          <li key={place_id} onClick={() => handleSelect(description)}>
-            {description}
-          </li>
-        ))}
-      </ul>
-    )}
+
+    <select
+      className="category-dropdown"
+      onChange={(e) => console.log("Selected Category:", e.target.value)}
+    >
+      <option value="" disabled selected>
+        Select Category
+      </option>
+      <option value="All">All</option>
+      <option value="Partyboats">Party boats
+      </option>
+      <option value="Luxuryboats">Luxury boats
+      </option>
+      <option value="Weddingboats">Wedding boats</option>
+    </select>
   </div>
+
+  <button className="submit-btn" onClick={handleSubmit}>
+    Submit
+  </button>
+
+  {status === "OK" && (
+    <ul className="suggestions">
+      {data.map(({ place_id, description }) => (
+        <li key={place_id} onClick={() => handleSelect(description)}>
+          {description}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
+
+  
   
   );
 };

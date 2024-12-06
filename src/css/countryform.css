@@ -1,171 +1,186 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  /* Container */
-  .container {
-    width: 90%;
-    max-width: 600px;
-    
-    display: flex;
+/* Centering Container on the Page */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+  text-align: center;
+  padding: 20px; /* Add padding for smaller screens */
+  box-sizing: border-box;
+}
+
+/* Input and Dropdown Container */
+.input-category-container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* Reduced gap for responsiveness */
+  width: 100%;
+  max-width: 650px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+}
+
+/* Input Field Styling */
+.input-container {
+  position: relative;
+  flex: 1;
+  min-width: 200px; /* Set minimum width for smaller screens */
+}
+
+.input-container input {
+  width: 100%;
+  height: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+.input-container input:focus {
+  border-color: #007bff;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
+}
+
+.category-dropdown {
+  flex: 1; /* Adjust dropdown size dynamically */
+  height: 50px;
+  min-width: 0; /* Prevent overflow due to long options */
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding: 0 15px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%; /* Ensure it takes full available width */
+  max-width: 100%; /* Avoid exceeding container width */
+  box-sizing: border-box; /* Include padding in width */
+}
+
+.category-dropdown:focus {
+  border-color: #007bff;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Submit Button */
+.submit-btn {
+  width: 100%;
+  max-width: 600px;
+  height: 50px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Suggestions List */
+.suggestions {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions li:hover {
+  background-color: #f0f8ff;
+}
+
+/* Icon Styling */
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+  pointer-events: none;
+}
+
+.icon.left {
+  left: 12px;
+}
+
+.icon.right {
+  right: 12px;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .input-category-container {
     flex-direction: column;
-    align-items: center;
     gap: 15px;
-    justify-content: center;
   }
-  
-  /* Input Field Container */
-  .input-container-wrapper {
-    display: flex; /* Keep input and button inline */
-    gap: 10px; /* Space between input and button */
-    width: 100%; /* Full width */
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .input-container {
-    position: relative;
-    width: 100%; /* Allow the input to take the remaining space */
-    flex: 1;
-  }
-  
-  .input-container input {
-    width: 100%;
-    height: 50px;
-    
-    padding-left: 40px;
-    padding-right: 40px;
-    border-radius: 12px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-    outline: none;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-  
-  .input-container input:focus {
-    border-color: #007bff;
-    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  /* Icon Styles */
-  .icon {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 20px;
-    color: #888;
-    cursor: pointer;
-  }
-  
-  .icon.left {
-    left: 12px;
-  }
-  
-  .icon.right {
-    right: -60px;
-    
-    color: #888;
-  }
-  
-  .icon.clear {
-    right: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #888;
-  }
-  
-  /* Hover effect for the clear icon */
-  .icon.clear:hover {
-    color: #007bff;
-  }
-  /* Submit Button */
+
   .submit-btn {
-    flex-shrink: 0; /* Prevent button from shrinking */
-    height: 50px; /* Match the input height */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    padding: 0 20px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex;
-    
-    margin-left: 80px;
-    align-items: center;
-    justify-content: center;
+    font-size: 15px;
+    padding: 6px 12px;
+    height: 45px;
   }
-  
-  .submit-btn:hover {
-    background-color: #0056b3;
+
+  .input-container input,
+  .category-dropdown {
+    height: 45px;
   }
-  
-  /* Suggestions List */
-  .suggestions {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: white;
+}
+
+@media (max-width: 768px) {
+  .input-category-container {
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  .suggestions li {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
+
+  .submit-btn {
+    font-size: 14px;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100px;
   }
-  
-  .suggestions li:hover {
-    background-color: #f0f8ff;
+
+  .input-container input,
+  .category-dropdown {
+    height: 45px; /* Adjust height for smaller screens */
+    font-size: 14px; /* Adjust font size for better fit */
+
   }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .container{
-      margin-left: 10px;
-    }
-    .submit-btn {
-      font-size: 15px; /* Smaller font size for smaller screens */
-      padding: 6px 12px; /* Compact button padding */
-      height: 45px;
-  
-    }
-  
-    .input-container input {
-      font-size: 14px;
-      height: 45px;
-    }
+}
+
+@media (max-width: 480px) {
+  .submit-btn {
+    font-size: 13px;
+    padding: 4px 8px;
+    height: 36px;
   }
-  
-  @media (max-width: 480px) {
-    .container {
-      width: 90%;
-      margin-left: 10px;
-    }
-  
-    .submit-btn {
-      font-size: 15px;
-      padding: 5px 10px; 
-      height: 40px;
-  
-    }
-  
-    .input-container input {
-      font-size: 15px;
-      height: 40px;
-    }
+
+  .input-container input,
+  .category-dropdown {
+    height: 40px; /* Adjust height for very small screens */
+    font-size: 12px; /* Further reduce font size */
   }
+}
