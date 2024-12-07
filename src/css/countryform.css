@@ -11,8 +11,9 @@ body {
 
 /* Container */
 .container {
-  width: 130%;
+  width: 90%;
   max-width: 600px;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,22 +23,25 @@ body {
 
 /* Input Field Container */
 .input-container-wrapper {
-  display: flex; /* Keep dropdown and button inline */
-  gap: 10px; /* Space between dropdown and button */
+  display: flex; /* Keep input and button inline */
+  gap: 10px; /* Space between input and button */
   width: 100%; /* Full width */
   justify-content: space-between;
   align-items: center;
 }
 
 .input-container {
-  width: 100%; /* Allow the dropdown to take full space */
+  position: relative;
+  width: 100%; /* Allow the input to take the remaining space */
   flex: 1;
 }
 
-.category-dropdown {
+.input-container input {
   width: 100%;
   height: 50px;
-  padding: 0 15px;
+  
+  padding-left: 40px;
+  padding-right: 40px;
   border-radius: 12px;
   border: 1px solid #ccc;
   font-size: 16px;
@@ -46,15 +50,46 @@ body {
   transition: all 0.3s ease;
 }
 
-.category-dropdown:focus {
+.input-container input:focus {
   border-color: #007bff;
   box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
 }
 
+/* Icon Styles */
+.icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #888;
+  cursor: pointer;
+}
+
+.icon.left {
+  left: 12px;
+}
+
+.icon.right {
+  right: -60px;
+  
+  color: #888;
+}
+
+.icon.clear {
+  right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #888;
+}
+
+/* Hover effect for the clear icon */
+.icon.clear:hover {
+  color: #007bff;
+}
 /* Submit Button */
 .submit-btn {
   flex-shrink: 0; /* Prevent button from shrinking */
-  height: 50px; /* Match the dropdown height */
+  height: 50px; /* Match the input height */
   background-color: #007bff;
   color: white;
   border: none;
@@ -64,6 +99,8 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
   display: flex;
+  
+  margin-left: 80px;
   align-items: center;
   justify-content: center;
 }
@@ -72,15 +109,43 @@ body {
   background-color: #0056b3;
 }
 
+/* Suggestions List */
+.suggestions {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.suggestions li:hover {
+  background-color: #f0f8ff;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
+  .container{
+    margin-left: 10px;
+  }
   .submit-btn {
     font-size: 15px; /* Smaller font size for smaller screens */
     padding: 6px 12px; /* Compact button padding */
     height: 45px;
+
   }
 
-  .category-dropdown {
+  .input-container input {
     font-size: 14px;
     height: 45px;
   }
@@ -89,18 +154,18 @@ body {
 @media (max-width: 480px) {
   .container {
     width: 90%;
-    margin-right: 20px;
-    margin-left:20px;
+    margin-left: 10px;
   }
 
   .submit-btn {
-    font-size: 14px;
-    padding: 5px 10px;
+    font-size: 15px;
+    padding: 5px 10px; 
     height: 40px;
+
   }
 
-  .category-dropdown {
-    font-size: 14px;
+  .input-container input {
+    font-size: 15px;
     height: 40px;
   }
 }
