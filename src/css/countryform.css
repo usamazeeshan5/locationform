@@ -4,7 +4,7 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-  top:30px;
+
   margin-right:100px;
   align-items: center;
   height: 100vh; /* Full viewport height */
@@ -18,15 +18,13 @@ body {
   align-items: center;
   justify-content: center; /* Center vertically */
   gap: 15px;
-  top:30px;
-
 }
 
 
 
 .input-container-wrapper {
-  position: relative; /* Keep it relative so the input and suggestions stay inside the same context */
-  width: 100%;
+  position: relative; /* Parent container for relative positioning */
+  width: 100%; /* Takes the full width */
   display: flex;
   align-items: center;
 }
@@ -128,10 +126,9 @@ body {
   border: 1px solid #ccc;
   border-radius: 12px;
   max-height: 300px; /* Increase max-height for better usability */
-  overflow-y: auto;
+
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhance shadow for a modern look */
   background-color: white;
-  z-index: 10; /* Ensure it appears above other elements */
 }
 
 /* Individual suggestion item */
@@ -142,10 +139,7 @@ body {
   font-size: 16px; /* Slightly larger font size for clarity */
 }
 
-/* Last item without bottom border */
-.suggestions li:last-child {
-  border-bottom: none;
-}
+
 
 .suggestions li:hover {
   background-color: #f0f8ff; /* Subtle hover effect */
@@ -153,36 +147,48 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .input-container {
-    max-width: 90%; /* Adjust width for smaller screens */
-  }
-  .submit-btn {
-    font-size: 15px; 
-    padding: 6px 12px; /* Compact button padding */
-    height: 45px;
-
-  }
-
   .input-container input {
-    font-size: 14px;
-    height: 45px;
+    font-size: 16px;
+    height: 48px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .submit-btn {
+    height: 40px;
+    width: 40px;
+  }
+
+  .submit-btn svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
 @media (max-width: 480px) {
+  .container {
+    width: 100%;
+    max-width: 750px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Adjusts space between input and button */
+    padding: 0 10px; /* Adds padding around the container */
+  }
+
   .input-container {
-    max-width: 100%;
+    flex-grow: 1; /* Makes input container take up remaining space */
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
+  .icon.right {
+    right: 10px; /* Ensure proper alignment with the input field */
+    left:290px;
+  }
   .submit-btn {
-    font-size: 15px;
-    padding: 5px 10px; 
     height: 40px;
-
-  }
-
-  .input-container input {
-    font-size: 15px;
-    height: 40px;
+    width: 40px;
+    margin-left: 320px; /* Adjusts space between input and button */
   }
 }
