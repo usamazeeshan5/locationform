@@ -184,11 +184,11 @@ body {
 
   .icon.right {
     right: 10px; /* Ensure proper alignment with the input field */
-    left:280px;
+    left:270px;
   }
   .submit-btn {
     height: 40px;
     width: 40px;
-    margin-left: 305px; /* Adjusts space between input and button */
+    margin-left: 300px; /* Adjusts space between input and button */
   }
 }
