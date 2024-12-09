@@ -9,11 +9,9 @@ body {
   min-height: 100vh;
 }
 
-/* Container */
 .container {
-  width: 90%;
-  max-width: 600px;
-  
+  width: 95%; /* Adjust container width */
+  max-width: 800px; /* Ensure room for the longer search bar */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,38 +19,34 @@ body {
   justify-content: center;
 }
 
-/* Input Field Container */
+
 .input-container-wrapper {
-  display: flex; /* Keep input and button inline */
-  gap: 10px; /* Space between input and button */
-  width: 100%; /* Full width */
-  justify-content: space-between;
+  position: relative; /* Parent container for relative positioning */
+  width: 100%; /* Takes the full width */
+  display: flex;
   align-items: center;
 }
 
+
 .input-container {
-  position: relative;
-  width: 100%; /* Allow the input to take the remaining space */
-  flex: 1;
+  width: 100%; /* Make the input container fill the available space */
+  position: relative; /* Allow positioning of elements inside it */
 }
-
 .input-container input {
-  width: 100%;
-  height: 50px;
-  
-  padding-left: 40px;
-  padding-right: 40px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  width: 100%; /* Input fills the container */
+  height: 56px;
+  padding-left: 50px; /* For the left icon */
+  padding-right: 60px; /* Leave space for the submit button */
+  border-radius: 25px;
+  border: 1.5px solid #e74c3c;
+  font-size: 18px;
   outline: none;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
-
 .input-container input:focus {
   border-color: #007bff;
-  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
 
 /* Icon Styles */
@@ -66,14 +60,16 @@ body {
 }
 
 .icon.left {
-  left: 12px;
-}
+  left: 20px; /* Space the icon slightly */
+  color: #888; /* Light gray color for the icon */}
 
-.icon.right {
-  right: -60px;
+  .icon.right {
+    right: 20px; /* Ensure proper alignment with the input field */
+    left:315px;
+    z-index: 10;
+  }
   
-  color: #888;
-}
+  
 
 .icon.clear {
   right: 10px;
@@ -86,27 +82,35 @@ body {
 .icon.clear:hover {
   color: #007bff;
 }
-/* Submit Button */
 .submit-btn {
-  flex-shrink: 0; /* Prevent button from shrinking */
-  height: 50px; /* Match the input height */
-  background-color: #007bff;
+  position: absolute; /* Position it inside the input-container */
+  margin-left: 350px; /* Align it at the right end of the input field */
+
+  top: 50%; /* Center vertically relative to the input */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  height: 45px;
+  width: 45px;
+  background-color: #00d4ff;
   color: white;
   border: none;
-  border-radius: 12px;
-  padding: 0 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 50%;
   display: flex;
-  
-  margin-left: 80px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
 }
 
 .submit-btn:hover {
-  background-color: #0056b3;
+  background-color: #00a3cc;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+/* SVG inside the button */
+.submit-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: white; /* Set the SVG color to white */
 }
 
 /* Suggestions List */
@@ -117,7 +121,7 @@ body {
   list-style: none;
   border: 1px solid #ccc;
   border-radius: 12px;
-  max-height: 200px;
+  max-height: 500px;
   overflow-y: auto;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   background-color: white;
@@ -135,11 +139,11 @@ body {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-  .container{
-    margin-left: 10px;
+  .input-container {
+    max-width: 90%; /* Adjust width for smaller screens */
   }
   .submit-btn {
-    font-size: 15px; /* Smaller font size for smaller screens */
+    font-size: 15px; 
     padding: 6px 12px; /* Compact button padding */
     height: 45px;
 
@@ -152,9 +156,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .container {
-    width: 90%;
-    margin-left: 10px;
+  .input-container {
+    max-width: 100%;
   }
 
   .submit-btn {

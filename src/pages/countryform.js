@@ -92,22 +92,28 @@ const CitySearchForm = () => {
     {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
   
     <div className="input-container-wrapper">
-      <div className="input-container">
-        <input
-          type="text"
-          value={value}
-          onChange={handleInputChange}
-          placeholder="Where to?"
-        />
-        <FaMapMarkerAlt className="icon left" />
-        {value && <FaTimes className="icon right" onClick={handleClearInput} />}
-      </div>
-  
-      <button className="submit-btn" onClick={handleSubmit}>
-        Submit
-      </button>
-    </div>
-  
+  <div className="input-container">
+    <input
+      type="text"
+      value={value}
+      onChange={handleInputChange}
+      placeholder="Where to?"
+    />
+    <FaMapMarkerAlt className="icon left" />
+    {value && <FaTimes className="icon right" onClick={handleClearInput} />}
+  </div>
+  <button className="submit-btn" onClick={handleSubmit}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      className="submit-icon"
+    >
+      <path d="M10 2a8 8 0 015.31 13.73l4 4a1 1 0 01-1.42 1.42l-4-4A8 8 0 1110 2zm0 2a6 6 0 100 12A6 6 0 0010 4z" />
+    </svg>
+  </button>
+</div>
+
+
     {status === "OK" && (
       <ul className="suggestions">
         {data.map(({ place_id, description }) => (
