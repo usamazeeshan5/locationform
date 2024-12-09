@@ -5,17 +5,17 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh; /* Full viewport height */
 }
 
 .container {
-  width: 95%; /* Adjust container width */
-  max-width: 800px; /* Ensure room for the longer search bar */
+  width: 100%; /* Full width for proper alignment */
+  max-width: 800px; /* Restrict max width for the container */
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* Center vertically */
   gap: 15px;
-  justify-content: center;
 }
 
 
