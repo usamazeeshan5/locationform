@@ -4,12 +4,14 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
+
+  margin-right:100px;
   align-items: center;
   height: 100vh; /* Full viewport height */
 }
 
 .container {
-  width: 100%; /* Full width for proper alignment */
+  width: 95%; /* Full width for proper alignment */
   max-width: 800px; /* Restrict max width for the container */
   display: flex;
   flex-direction: column;
