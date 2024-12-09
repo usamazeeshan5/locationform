@@ -36,7 +36,7 @@ body {
   width: 100%; /* Input fills the container */
   height: 56px;
   padding-left: 50px; /* For the left icon */
-  padding-right: 60px; /* Leave space for the submit button */
+  padding-right: 50px; /* Leave space for the submit button */
   border-radius: 25px;
   border: 1.5px solid #e74c3c;
   font-size: 18px;
