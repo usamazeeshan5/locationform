@@ -49,82 +49,54 @@ const CitySearchForm = () => {
 
   const handleSubmit = () => {
     if (selectedCity) {
-      console.log("Selected Location:", selectedCity);
-      console.log("Coordinates:", coordinates);
-  
       const locationData = { city: selectedCity, coordinates };
       localStorage.setItem("selectedLocation", JSON.stringify(locationData));
-  
-      // Encode the location, then replace encoded characters with readable ones
+
       const encodedLocation = encodeURIComponent(selectedCity)
-        .replace(/%20/, " ") // Replace %20 with space
-        .replace(/%20/g, " ") // Replace %20 with space
-        .replace(/%2C/g, ",") // Replace %2C with comma
-        .replace(/%26/g, "&") // Replace %26 with ampersand if needed
-        .replace(/%27/g, "'"); // Replace %27 with apostrophe if needed
-  
-      // Navigate to the next page with the cleaned location in the URL
-    window.open(`https://fuelmemories.com/yachts-worldwide/?location=${encodedLocation}`, "_blank");
-      
+        .replace(/%20/g, " ")
+        .replace(/%2C/g, ",")
+        .replace(/%26/g, "&")
+        .replace(/%27/g, "'");
+      window.open(`https://fuelmemories.com/yachts-worldwide/?location=${encodedLocation}`, "_blank");
     } else {
       console.log("No location selected.");
     }
   };
-  
-  
-  
-  
-  
-//   const handleSubmit = () => {
-//     if (selectedCity) {
-//       console.log("Selected Location:", selectedCity);
-//       console.log("Coordinates:", coordinates);
-//     //   window.open("https://fuelmemories.com/yacht-2/", "_blank");
-
-//     } else {
-//       console.log("No location selected.");
-//     }
-//   };
-  
 
   return (
     <div className="container">
-    {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
-  
-    <div className="input-container-wrapper">
-  <div className="input-container">
-    <input
-      type="text"
-      value={value}
-      onChange={handleInputChange}
-      placeholder="Where to?"
-    />
-    <FaMapMarkerAlt className="icon left" />
-    {value && <FaTimes className="icon right" onClick={handleClearInput} />}
-  </div>
-  <button className="submit-btn" onClick={handleSubmit}>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      className="submit-icon"
-    >
-      <path d="M10 2a8 8 0 015.31 13.73l4 4a1 1 0 01-1.42 1.42l-4-4A8 8 0 1110 2zm0 2a6 6 0 100 12A6 6 0 0010 4z" />
-    </svg>
-  </button>
-</div>
-
-
-    {status === "OK" && (
-      <ul className="suggestions">
-        {data.map(({ place_id, description }) => (
-          <li key={place_id} onClick={() => handleSelect(description)}>
-            {description}
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-  
+      {apiError && <p style={{ color: "red", marginBottom: "10px" }}>{apiError}</p>}
+      <div className="input-container-wrapper">
+        <div className="input-container">
+          <input
+            type="text"
+            value={value}
+            onChange={handleInputChange}
+            placeholder="Where to?"
+          />
+          <FaMapMarkerAlt className="icon left" />
+          {value && <FaTimes className="icon right" onClick={handleClearInput} />}
+        </div>
+        <button className="submit-btn" onClick={handleSubmit}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            className="submit-icon"
+          >
+            <path d="M10 2a8 8 0 015.31 13.73l4 4a1 1 0 01-1.42 1.42l-4-4A8 8 0 1110 2zm0 2a6 6 0 100 12A6 6 0 0010 4z" />
+          </svg>
+        </button>
+      </div>
+      {status === "OK" && (
+        <ul className="suggestions">
+          {data.map(({ place_id, description }) => (
+            <li key={place_id} onClick={() => handleSelect(description)}>
+              {description}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 };
 
@@ -147,13 +119,7 @@ const App = () => {
         <div style={{ textAlign: "center", color: "red", padding: "20px" }}>
           {apiKeyError}
         </div>
-      ) : isApiReady ? (
-        <CitySearchForm />
-      ) : (
-        <p style={{ textAlign: "center", color: "#555" }}>
-          Loading Google Maps API...
-        </p>
-      )}
+      ) : isApiReady && <CitySearchForm />}
     </LoadScript>
   );
 };

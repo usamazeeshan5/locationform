@@ -4,7 +4,7 @@ body {
   padding: 0;
   display: flex;
   justify-content: center;
-
+  top:30px;
   margin-right:100px;
   align-items: center;
   height: 100vh; /* Full viewport height */
@@ -18,13 +18,15 @@ body {
   align-items: center;
   justify-content: center; /* Center vertically */
   gap: 15px;
+  top:30px;
+
 }
 
 
 
 .input-container-wrapper {
-  position: relative; /* Parent container for relative positioning */
-  width: 100%; /* Takes the full width */
+  position: relative; /* Keep it relative so the input and suggestions stay inside the same context */
+  width: 100%;
   display: flex;
   align-items: center;
 }
@@ -115,28 +117,38 @@ body {
   fill: white; /* Set the SVG color to white */
 }
 
-/* Suggestions List */
 .suggestions {
-  width: 100%;
+  position: relative; /* Align relative to the parent container */
+  top: 5px; /* Add some spacing below the input */
+  left: 50px; /* Align with the left edge of the input field */
+  width: 120%; /* Match the full width of the input container */
   margin: 0;
   padding: 0;
   list-style: none;
   border: 1px solid #ccc;
   border-radius: 12px;
-  max-height: 500px;
+  max-height: 300px; /* Increase max-height for better usability */
   overflow-y: auto;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Enhance shadow for a modern look */
   background-color: white;
+  z-index: 10; /* Ensure it appears above other elements */
 }
 
+/* Individual suggestion item */
 .suggestions li {
-  padding: 10px;
+  padding: 12px 16px; /* Increase padding for better readability */
   cursor: pointer;
   border-bottom: 1px solid #eee;
+  font-size: 16px; /* Slightly larger font size for clarity */
+}
+
+/* Last item without bottom border */
+.suggestions li:last-child {
+  border-bottom: none;
 }
 
 .suggestions li:hover {
-  background-color: #f0f8ff;
+  background-color: #f0f8ff; /* Subtle hover effect */
 }
 
 /* Responsive Styles */
